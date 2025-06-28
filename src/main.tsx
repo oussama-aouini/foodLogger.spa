@@ -17,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
         redirect_uri: window.location.origin,
         audience: audience,
       }}
+      cacheLocation="localstorage" // reloading doesn't affect auth state
     >
       <App />
     </Auth0Provider>
