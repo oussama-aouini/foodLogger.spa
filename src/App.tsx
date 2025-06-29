@@ -4,6 +4,8 @@ import Dashboard from "./pages/Dashboard";
 import AppLayout from "./layouts/AppLayout";
 import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
+import Foods from "./pages/Foods";
+import Meals from "./pages/Meals";
 
 function App() {
   const { isLoading, error } = useAuth0();
@@ -22,6 +24,8 @@ function App() {
       <Route element={<AppLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/foods" element={<Foods />} />
+        <Route path="/meals" element={<Meals />} />
       </Route>
     </Routes>
   );
