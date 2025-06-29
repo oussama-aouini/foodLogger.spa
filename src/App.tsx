@@ -1,23 +1,27 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import "./App.css";
-import LoginButton from "./components/LoginButton";
-import LogoutButton from "./components/LogoutButton";
-import Profile from "./components/Profile";
+import { Routes, Route } from "react-router";
+import Home from "./pages/Home";
+import AppLayout from "./layouts/AppLayout";
+import Profile from "./pages/Profile";
 
 function App() {
   const { isLoading, error } = useAuth0();
+
+  if (error) {
+    return <p>Authentication Error</p>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div>
-      {error && <p>Authentication Error</p>}
-      {!error && isLoading && <p>Loading...</p>}
-      {!error && !isLoading && (
-        <>
-          <LogoutButton />
-          <LoginButton />
-          <Profile />
-        </>
-      )}
-    </div>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route index element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+    </Routes>
   );
 }
 
