@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Dashboard from "./pages/Dashboard";
 import AppLayout from "./layouts/AppLayout";
 import Profile from "./pages/Profile";
@@ -8,7 +8,7 @@ import Foods from "./pages/Foods";
 import Meals from "./pages/Meals";
 
 function App() {
-  const { isLoading, error } = useAuth0();
+  const { isLoading, error, isAuthenticated } = useAuth0();
 
   if (error) {
     return <p>Authentication Error</p>;
@@ -20,7 +20,10 @@ function App() {
 
   return (
     <Routes>
-      <Route index element={<Landing />} />
+      <Route
+        index
+        element={isAuthenticated ? <Navigate to="/dashboard" /> : <Landing />}
+      />
       <Route element={<AppLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
