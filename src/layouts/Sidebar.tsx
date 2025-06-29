@@ -10,8 +10,8 @@ const Sidebar = () => {
           width: "15vw",
         }}
       >
-        <NavLink to="/" end>
-          Home
+        <NavLink to="/dashboard" end>
+          Dashboard
         </NavLink>
         <NavLink to="/profile" end>
           Profile
