@@ -22,6 +22,12 @@ const Sidebar = () => {
         <NavLink to="/meals" end>
           Meals
         </NavLink>
+        <NavLink to="/diary" end>
+          Diary
+        </NavLink>
+        <NavLink to="/feed" end>
+          Feed
+        </NavLink>
       </nav>
     </div>
   );

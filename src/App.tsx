@@ -6,6 +6,8 @@ import Profile from "./pages/Profile";
 import Landing from "./pages/Landing";
 import Foods from "./pages/Foods";
 import Meals from "./pages/Meals";
+import Diary from "./pages/Diary";
+import Feed from "./pages/Feed";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -29,6 +31,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/foods" element={<Foods />} />
         <Route path="/meals" element={<Meals />} />
+        <Route path="/diary" element={<Diary />} />
+        <Route path="/feed" element={<Feed />} />
       </Route>
     </Routes>
   );
