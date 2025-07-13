@@ -1,9 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { Box } from "@mui/material";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   return (
-    <div>
+    <Box>
       <h2>Profile</h2>
       {isAuthenticated && (
         <div>
@@ -19,7 +20,7 @@ const Profile = () => {
           <p>Sex:_</p>
         </div>
       )}
-    </div>
+    </Box>
   );
 };
 export default Profile;
