@@ -9,11 +9,19 @@ import {
 import { AccountCircle } from "@mui/icons-material";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
-const drawerWidth = 240;
+import LoginButton from "../components/LoginButton";
+import { useLocation } from "react-router";
 
 const Header = () => {
   const { logout, isAuthenticated } = useAuth0();
+
+  const { pathname } = useLocation();
+
+  let drawerWidth = 240;
+
+  if (pathname == "/") {
+    drawerWidth = 0;
+  }
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -65,6 +73,7 @@ const Header = () => {
             </Menu>
           </div>
         )}
+        {!isAuthenticated && <LoginButton />}
       </Toolbar>
     </AppBar>
   );
