@@ -4,10 +4,17 @@ import "./index.css";
 import App from "./App.tsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter } from "react-router";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -21,7 +28,9 @@ createRoot(document.getElementById("root")!).render(
         }}
         cacheLocation="localstorage" // reloading doesn't affect auth state
       >
-        <App />
+        <ThemeProvider theme={darkTheme}>
+          <App />
+        </ThemeProvider>
       </Auth0Provider>
     </BrowserRouter>
   </StrictMode>
