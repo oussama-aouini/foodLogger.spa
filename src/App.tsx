@@ -8,6 +8,7 @@ import Foods from "./pages/Foods";
 import Meals from "./pages/Meals";
 import Diary from "./pages/Diary";
 import Feed from "./pages/Feed";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -26,7 +27,13 @@ function App() {
         index
         element={isAuthenticated ? <Navigate to="/dashboard" /> : <Landing />}
       />
-      <Route element={<AppLayout />}>
+      <Route
+        element={
+          <ProtectedRoute>
+            <AppLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/foods" element={<Foods />} />
