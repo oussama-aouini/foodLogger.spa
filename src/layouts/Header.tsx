@@ -1,19 +1,21 @@
 import {
   AppBar,
+  Avatar,
+  Box,
   IconButton,
   Menu,
   MenuItem,
   Toolbar,
+  Tooltip,
   Typography,
 } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../components/LoginButton";
 import { useLocation } from "react-router";
 
 const Header = () => {
-  const { logout, isAuthenticated } = useAuth0();
+  const { logout, isAuthenticated, user } = useAuth0();
 
   const { pathname } = useLocation();
 
@@ -43,18 +45,14 @@ const Header = () => {
           FoodLogger
         </Typography>
         {isAuthenticated && (
-          <div>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleMenu} sx={{ p: 0 }}>
+                <Avatar alt={user?.name} src={user?.picture} />
+              </IconButton>
+            </Tooltip>
             <Menu
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
@@ -71,7 +69,7 @@ const Header = () => {
             >
               <MenuItem onClick={() => logout()}>Sign Out</MenuItem>
             </Menu>
-          </div>
+          </Box>
         )}
         {!isAuthenticated && <LoginButton />}
       </Toolbar>
