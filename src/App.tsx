@@ -9,17 +9,10 @@ import Meals from "./pages/Meals";
 import Diary from "./pages/Diary";
 import Feed from "./pages/Feed";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AuthHandler from "./components/AuthHandler";
 
 function App() {
-  const { isLoading, error, isAuthenticated } = useAuth0();
-
-  if (error) {
-    return <p>Authentication Error</p>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const { isAuthenticated } = useAuth0();
 
   return (
     <Routes>
@@ -30,7 +23,9 @@ function App() {
       <Route
         element={
           <ProtectedRoute>
-            <AppLayout />
+            <AuthHandler>
+              <AppLayout />
+            </AuthHandler>
           </ProtectedRoute>
         }
       >
